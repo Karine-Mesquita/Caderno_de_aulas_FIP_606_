@@ -1,0 +1,9 @@
+"0","#carregar os pacotes necessários aos comandos para ler as planilhas "
+"0","#install.packages(""readxl"")"
+"0","library(readxl) #Pacote para ler planilhas do excel"
+"2","Aviso:"
+"2"," pacote ‘readxl’ foi compilado no R versão 4.4.2
+"
+"0","dados <- read_excel(""dados-diversos.xlsx"", sheet = ""sensibilidade_fungicidas"")"
+"2","Erro: `path` does not exist: ‘dados-diversos.xlsx’
+"

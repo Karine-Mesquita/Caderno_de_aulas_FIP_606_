@@ -1,0 +1,8 @@
+"0","#para contar as variáveis
+survey |>
+  group_by(state) |> 
+  count()
+"
+"2","Error in count(group_by(survey, state)) : 
+  não foi possível encontrar a função ""count""
+"
