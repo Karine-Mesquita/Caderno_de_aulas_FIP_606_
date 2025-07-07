@@ -1,0 +1,157 @@
+---
+title: "Aula5"
+author: "Karine"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(gsheet)
+library(ggplot2)
+
+gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=866852711#gid=866852711")
+
+campo <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=866852711#gid=866852711")
+
+campo
+
+campo |> 
+  ggplot(aes(TRAT, PROD))+
+  geom_jitter(width = 0.1)+
+  stat_summary(
+    fun.data = "mean_cl_boot",
+    colour = "magenta", width = 0.3)
+
+campo$TRAT <- factor(campo$TRAT)
+campo$BLOCO <- factor(campo$BLOCO)
+m_campo <- lm(PROD ~ BLOCO + TRAT, data = campo)
+anova (m_campo)
+plot(m_campo)
+library(DHARMa)
+simulateResiduals(m_campo)
+plot(simulateResiduals(m_campo))
+library(emmeans)
+means_campo <- emmeans(m_campo, ~TRAT)
+means_campo
+plot(means_campo)
+
+#teste de comparação multipla 
+library(multcomp)
+cld(means_campo)
+pwpp(means_campo)
+
+#para ferrugem 
+
+m_campo <- lm(FER ~ BLOCO + TRAT, data = campo)
+anova (m_campo)
+#transforma 
+m_campo <- lm(log(FER) ~ BLOCO + TRAT, data = campo)
+anova (m_campo)
+means_campo <- emmeans(m_campo, ~TRAT, type = "response")
+means_campo
+plot(means_campo)
+library(DHARMa)
+simulateResiduals(m_campo)
+plot(simulateResiduals(m_campo))
+library(emmeans)
+#teste de comparação multipla 
+library(multcomp)
+cld(means_campo)
+pwpp(means_campo)
+library(agricolae)
+cv.model(m_campo)
+
+#script limpo
+m_campo <- lm(log(FER) ~ BLOCO + TRAT, data = campo)
+anova (m_campo)
+library(DHARMa)
+simulateResiduals(m_campo)
+plot(simulateResiduals(m_campo))
+library(emmeans)
+means_campo <- emmeans(m_campo, ~TRAT, type = "response")
+means_campo
+plot(means_campo)
+#teste de comparação multipla 
+library(multcomp)
+cld(means_campo)
+pwpp(means_campo)
+library(agricolae)
+cv.model(m_campo)
+
+
+```
+
+### Parte 2 da Aula
+
+```{r}
+
+#delineamento parcelas divididas 
+gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=1345524759#gid=1345524759")
+
+milho <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=1345524759#gid=1345524759")
+milho 
+milho |> 
+  ggplot(aes(hybrid, index, color = method))+
+  geom_jitter(width = 0.1)+
+  coord_flip()+
+  facet_wrap(~ method)
+
+#para modelos mistos (introduzir fator aleatório no modelo)
+install.packages("lme4")
+library(lme4)
+library(dplyr)
+
+milho$hybrid_block <- interaction(milho$hybrid, milho$block)
+milho |> 
+  mutate(hybrid_block = interaction(hybrid, block))
+m_milho <- lmer(index ~hybrid*method+
+                (1 | block:hybrid_block), data = milho)
+  car::Anova(m_milho)
+  
+  plot(simulateResiduals(m_milho))
+  media_milho <- emmeans(m_milho, ~ hybrid | method)
+  media_milho
+  cld(media_milho, Letters = letters)
+  
+  #para comparar na linha 
+  
+  plot(simulateResiduals(m_milho))
+  media_milho <- emmeans(m_milho, ~ method | hybrid)
+  media_milho
+  cld(media_milho, Letters = letters)
+  
+  
+ #para produtividade 
+  milho |> 
+ m_milho2 <- lmer(yeld ~hybrid*method+
+                (1 | block:hybrid_block), data = milho)
+  
+  
+  
+  #relação yeld e index 
+  milho |>
+    ggplot(aes(index, yield))+
+    geom_point()+
+    geom_smooth(method = "lm")
+  cor.test(milho$index, milho$yield)   
+  
+  cor1 <- cor(milho$index, milho$yield)
+  cor1*cor1*100
+  
+  
+  cor(campo$FER, campo$PROD)
+  campo |>
+    ggplot(aes(FER,PROD))+
+    geom_point()+
+    geom_smooth(method = "lm")
+  cor.test(campo$FER, campo$PROD)
+   cor.test(campo$FER, campo$DFC)
+   campo |>
+    ggplot(aes(FER,DFC))+
+    geom_point()+
+    geom_smooth(method = "lm")
+  
+  
+```

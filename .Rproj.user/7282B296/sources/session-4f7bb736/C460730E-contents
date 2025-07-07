@@ -1,0 +1,23 @@
+---
+title: "Aula_5_Comparação de Tratamentos com ANOVA, Modelos Mistos e Correlação"
+author: "Karine Mesquita"
+format: 
+  html:
+    code-fold: true       # permite esconder/mostrar os códigos (com uma abinha)
+    code-tools: true      # adiciona botões de copiar/mostrar código
+    toc: true             # inclui um sumário (índice)
+editor: visual
+editor_options: 
+  chunk_output_type: console
+execute:
+  warning: false          # oculta mensagens de warning
+  message: false          # oculta mensagens do tipo "package loaded"
+  echo: true              # mostra o código
+  include: true           # mostra o output dos chunks
+---
+
+# Aula 5
+
+## Anova 
+
+Complementando a aula anterior, nesta aula revisamos a **ANOVA tradicional** e aplicamos **testes de médias**. Como nova análise temos os **modelos lineares mistos**, utilizados quando há estruturas de dados mais complexas, como parcelas subdivididas e efeitos aleatórios. Introduzindo também **correlação e regressão linear**, que permitem avaliar relações entre variáveis contínuas.
