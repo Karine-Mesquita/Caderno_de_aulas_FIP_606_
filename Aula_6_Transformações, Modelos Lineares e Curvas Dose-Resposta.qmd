@@ -1,0 +1,14 @@
+---
+title: "Aula_6_Transformações, Modelos Lineares e Curvas Dose-Resposta"
+author: "Karine Mesquita"
+format: html
+editor: visual
+---
+
+# Aula 6
+
+Nesta aula abordamos estratégias para normalizar dados experimentais por meio de transformações (como a raiz quadrada e o método de **Box-Cox**), quando a Anova não atender aos pressupostos de normalidade e homocedasticidade. Por fim, introduzimos os **modelos não lineares** para curvas dose-resposta, utilizando o pacote `drc`.
+
+```{r}
+
+```
