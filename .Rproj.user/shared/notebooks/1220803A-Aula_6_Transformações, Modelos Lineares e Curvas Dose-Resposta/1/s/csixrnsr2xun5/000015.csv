@@ -1,0 +1,7 @@
+"2","Aviso em gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," não foi possível abrir o arquivo comprimido 'C:/Users/karin/OneDrive/Ambiente de Trabalho/scripts_R/estatistica_meusestudos/Aula_Github/.Rproj.user/shared/notebooks/1220803A-Aula_6_Transformações, Modelos Lineares e Curvas Dose-Resposta/1/7282B2966bccf890/csixrnsr2xun5_t/0dc7e1a6594a43c182bd61cc81005bd2.snapshot', motivo provável 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : não é possível abrir a conexão
+"

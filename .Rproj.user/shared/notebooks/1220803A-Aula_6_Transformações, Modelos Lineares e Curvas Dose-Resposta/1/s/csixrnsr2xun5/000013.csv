@@ -1,0 +1,11 @@
+"0","estande |> 
+ggplot(aes(trat,nplants))+
+  geom_point(color = ""gray"")+
+  geom_smooth(method = ""lm"", se = FALSE, color = ""black"")+
+    facet_wrap(~ exp)+
+  theme_minimal()+
+  labs(x= ""% de inóculo da semente"",
+       y= ""número de plantas"")
+"
+"1","[38;5;252m`geom_smooth()` using formula = 'y ~ x'[39m
+"

@@ -1,0 +1,6 @@
+"0","BR |> 
+ ggplot()+
+  geom_sf(fill=""gray90"")
+"
+"2","Erro: objeto 'BR' não encontrado
+"

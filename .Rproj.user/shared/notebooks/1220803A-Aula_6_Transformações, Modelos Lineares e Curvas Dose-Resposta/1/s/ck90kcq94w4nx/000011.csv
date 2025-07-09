@@ -1,0 +1,16 @@
+"0","estande |>
+  ggplot(aes(trat, nplants, color = factor(exp)))+
+  geom_point()+
+  #geom_smooth(method = ""lm"", se = FALSE)+
+  geom_abline(intercept = 69.74,
+              slope = -0.568, linewidth = 2)+
+  geom_abline(intercept = 43, slope = -0.73, linetype = ""dashed"")+
+  geom_abline(intercept = 96, slope = -0.40, linetype = ""dashed"")
+"
+"2","Aviso em gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," não foi possível abrir o arquivo comprimido 'C:/Users/karin/OneDrive/Ambiente de Trabalho/scripts_R/estatistica_meusestudos/Aula_Github/.Rproj.user/shared/notebooks/1220803A-Aula_6_Transformações, Modelos Lineares e Curvas Dose-Resposta/1/7282B2966bccf890/ck90kcq94w4nx_t/67330d97b8af4765a17be925a198f1dd.snapshot', motivo provável 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : não é possível abrir a conexão
+"
